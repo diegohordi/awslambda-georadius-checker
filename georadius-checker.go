@@ -26,18 +26,17 @@ type Coordinates struct {
 }
 
 // Degrees to radians
-func toRadians(degrees float64) float64{
-	return degrees * math.Pi/180
+func toRadians(degrees float64) float64 {
+	return degrees * math.Pi / 180
 }
 
-func IsInsideRadius(aLatitude float64, aLongitude float64, bLatitude float64, bLongitude float64, radius int) bool{
-	diffLongitude := toRadians(bLongitude - aLongitude)
-	refLatRadians := toRadians(aLatitude)
-	latRadians := toRadians(bLatitude)
-	difference := math.Acos(math.Sin(refLatRadians) * math.Sin(latRadians) + math.Cos(refLatRadians) * math.Cos(latRadians) * math.Cos(diffLongitude)) * slcRadius
+func IsInsideRadius(aLatitude float64, aLongitude float64, bLatitude float64, bLongitude float64, radius int) bool {
+	diffLongitudeRadians := toRadians(bLongitude - aLongitude)
+	aLatitudeRadians := toRadians(aLatitude)
+	bLatitudeRadians := toRadians(bLatitude)
+	difference := math.Acos(math.Sin(aLatitudeRadians)*math.Sin(bLatitudeRadians)+math.Cos(aLatitudeRadians)*math.Cos(bLatitudeRadians)*math.Cos(diffLongitudeRadians)) * slcRadius
 	return difference <= float64(radius)
 }
-
 
 func HandleRequest(ctx context.Context, coordinates Coordinates) (bool, error) {
 	return IsInsideRadius(coordinates.ALatitude, coordinates.ALongitude, coordinates.BLatitude, coordinates.BLongitude, coordinates.Radius), nil

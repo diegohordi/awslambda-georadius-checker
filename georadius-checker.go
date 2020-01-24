@@ -25,6 +25,10 @@ type Coordinates struct {
 	Radius     int     `json:"radius"` // Radius in meters
 }
 
+type Result struct {
+	InsideRadius bool `json:"insideRadius"`
+}
+
 // Degrees to radians
 func toRadians(degrees float64) float64 {
 	return degrees * math.Pi / 180
@@ -38,8 +42,9 @@ func IsInsideRadius(aLatitude float64, aLongitude float64, bLatitude float64, bL
 	return difference <= float64(radius)
 }
 
-func HandleRequest(ctx context.Context, coordinates Coordinates) (bool, error) {
-	return IsInsideRadius(coordinates.ALatitude, coordinates.ALongitude, coordinates.BLatitude, coordinates.BLongitude, coordinates.Radius), nil
+func HandleRequest(ctx context.Context, coordinates Coordinates) (Result, error) {
+	result := Result{InsideRadius: IsInsideRadius(coordinates.ALatitude, coordinates.ALongitude, coordinates.BLatitude, coordinates.BLongitude, coordinates.Radius)}
+	return result, nil
 }
 
 func main() {

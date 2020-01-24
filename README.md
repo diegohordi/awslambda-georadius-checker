@@ -14,7 +14,7 @@ https://en.wikipedia.org/wiki/Law_of_cosines
 
 `go get github.com/aws/aws-lambda-go/lambda`
 
-* AWS Lambda Deployment Package - github.com/aws/aws-lambda-go/cmd/build-lambda-zip
+* AWS Lambda Deployment Package (Windows)
 
 `go get github.com/aws/aws-lambda-go/cmd/build-lambda-zip`
 

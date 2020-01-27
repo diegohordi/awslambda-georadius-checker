@@ -1,10 +1,7 @@
 # Geo Radius Checker - Go AWS Lambda Ready
 
-## Description
-This project was made for GO and AWS Lambda study purposes.
-
-It uses the Law of Cosines to calculate a distance between a point A and a point B coordinates and check if it is inside
-a given radius (in meters).      
+## See
+      
 
 https://en.wikipedia.org/wiki/Law_of_cosines
 
